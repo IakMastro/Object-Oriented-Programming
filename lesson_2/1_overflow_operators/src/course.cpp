@@ -1,0 +1,19 @@
+#include <iostream>
+#include "../lib/course.hpp"
+
+course::course(std::string name, double grade) {
+  this->name = name;
+  this->grade = grade;
+
+  std::cout << "Creating: " << this << std::endl;
+}
+
+course::~course() {
+  std::cout << "Destroying: " << this << std::endl;
+}
+
+// Overflow ostream operator
+std::ostream& operator<<(std::ostream& os, course& c) {
+  os << "Name: " << c.name << "\tGrade: " << c.grade;
+  return os;
+}
