@@ -6,23 +6,6 @@
 Loukas::Loukas() : Player('L') {
 }
 
-void Loukas::generateLocations(int max_row, int max_col) {
-  time_t n_time;
-  srand((unsigned) time(&n_time));
-
-  for (;;) {
-    int row = rand() % max_row;
-    int col = rand() % max_col;
-
-    if (mvinch(row, col) == '.' && mvinch(row, col) != '*' && mvinch(row, col) != 'M') {
-      current_poss[0] = row;
-      current_poss[1] = col;
-      mvaddch(row, col, this->symbol);
-      break;
-    }
-  }
-}
-
 // Μέθοδος κίνησης του Λουκά που κληρονομεί από τον Player
 // Επιστρέφει true εάν βρει τον στόχο, διαφορετικά επιστρέφει false
 bool Loukas::move() {

@@ -6,7 +6,6 @@
 class Mpampis : public Player {
 public:
   Mpampis();
-  void generateLocations(int max_row, int max_col);
   bool move();
 };
 

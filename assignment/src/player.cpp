@@ -19,9 +19,10 @@ void Player::generateLocations(int max_row, int max_col) {
     int row = rand() % max_row;
     int col = rand() % max_col;
 
-    if (mvinch(row, col) == '.' && mvinch(row, col) != '*' && mvinch(row, col) != 'M' && mvinch(row, col) != 'L') {
+    if (mvinch(row, col) == '.') {
       current_poss[0] = row;
       current_poss[1] = col;
+      // attron(COLOR_PAIR(1));
       mvaddch(row, col, this->symbol);
       break;
     }
