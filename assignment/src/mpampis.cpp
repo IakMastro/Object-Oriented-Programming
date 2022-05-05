@@ -17,10 +17,8 @@ bool Mpampis::move() {
   switch (ch) {
     case KEY_UP: // Πάνω βελάκι
       if (mvinch(current_poss[0] - 1, current_poss[1]) == '.') {
-        // attron(COLOR_PAIR(1));
         mvaddch(current_poss[0], current_poss[1], '.');
         current_poss[0]--;
-        // attron(COLOR_PAIR(2));
         mvaddch(current_poss[0], current_poss[1], this->symbol);
       } else if (mvinch(current_poss[0] - 1, current_poss[1]) == 'G') {
         return true;
@@ -28,10 +26,8 @@ bool Mpampis::move() {
       break;
     case KEY_DOWN: // Κάτω βελάκι
       if (mvinch(current_poss[0] + 1, current_poss[1]) == '.') {
-        // attron(COLOR_PAIR(1));
         mvaddch(current_poss[0], current_poss[1], '.');
         current_poss[0]++;
-        // attron(COLOR_PAIR(2));
         mvaddch(current_poss[0], current_poss[1], this->symbol);
       } else if (mvinch(current_poss[0] + 1, current_poss[1]) == 'G') {
         return true;
@@ -39,10 +35,8 @@ bool Mpampis::move() {
       break;
     case KEY_LEFT: // Αριστερό βελάκι
       if (mvinch(current_poss[0], current_poss[1] - 1) == '.') {
-        // attron(COLOR_PAIR(1));
         mvaddch(current_poss[0], current_poss[1], '.');
         current_poss[1]--;
-        // attron(COLOR_PAIR(2));
         mvaddch(current_poss[0], current_poss[1], this->symbol);
       } else if (mvinch(current_poss[0], current_poss[1] - 1) == 'G') {
         return true;
@@ -50,10 +44,8 @@ bool Mpampis::move() {
       break;
     case KEY_RIGHT: // Δεξί βελάκι
       if (mvinch(current_poss[0], current_poss[1] + 1) == '.') {
-        // attron(COLOR_PAIR(1));
         mvaddch(current_poss[0], current_poss[1], '.');
         current_poss[1]++;
-        // attron(COLOR_PAIR(2));
         mvaddch(current_poss[0], current_poss[1], this->symbol);
       } else if (mvinch(current_poss[0], current_poss[1] + 1) == 'G') {
         return true;

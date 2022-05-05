@@ -41,7 +41,6 @@ void Game::loadLevel() {
     for (char c : line) {
       // Στις συγκεκριμένες συντεταγμένες
       // προσθέτει τον χαρακτήρα που διάβασε
-      // attron(COLOR_PAIR(1));
       mvaddch(max_row, max_col, c);
       max_col++;
     }
@@ -69,7 +68,6 @@ void showEndGameMessage(std::string message) {
   int row, col;
   getmaxyx(stdscr, row, col);
   clear();
-  // attron(COLOR_PAIR(1));
   mvprintw(row / 2, (col - message.length()) / 2, message.c_str());
   mvprintw(row - 1, 0, "Πατήστε οποιοσδήποτε κουμπί για να τερματίσει το παιχνίδι...", row, col);
   getch();
