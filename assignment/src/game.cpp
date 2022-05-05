@@ -83,6 +83,10 @@ void Game::run() {
   getmaxyx(stdscr, row, col);
   mvprintw(row - 1, 0, "Κάντε την κίνηση σας", row, col);
 
+  // Αρχικοποίηση τυχαίου αριθμού κινήσεων
+  time_t n_time;
+  srand((unsigned) time(&n_time));
+  int moves = rand() % 3 + 5;
   for (int round = 1;; round++) {
     if (players[0]->move()) {
       showEndGameMessage("Νίκησε ο Μπάμπης Ποτερίδης!");
@@ -93,7 +97,7 @@ void Game::run() {
     }
 
     // Κάθε πέντε γύρους, αλλάζει θέση ο στόχος και ενημερώνεται ο Λουκάς κατάλληλα
-    if (round % 5 == 0) {
+    if (round % moves == 0) {
       int *poss = players[2]->getCurrentPoss();
       mvaddch(poss[0], poss[1], '.');
 
