@@ -28,5 +28,8 @@ int main(int argc, char** argv) {
   refresh();
   game.run(); // Εκτέλεση παιχνιδιού
 
+  endwin(); // Καταστροφή ncurses
+  exit(0); // Έξοδος παιχνιδιού
+
   return 0;
 }

@@ -71,7 +71,7 @@ void showEndGameMessage(std::string message) {
   clear();
   // attron(COLOR_PAIR(1));
   mvprintw(row / 2, (col - message.length()) / 2, message.c_str());
-  mvprintw(row - 1, 0, "Πατήστε οποιοσδήποτε κουμπί για να συνεχίσετε...", row, col);
+  mvprintw(row - 1, 0, "Πατήστε οποιοσδήποτε κουμπί για να τερματίσει το παιχνίδι...", row, col);
   getch();
   refresh();
   clear();
@@ -82,13 +82,23 @@ void Game::run() {
   int row, col;
   getmaxyx(stdscr, row, col);
   mvprintw(row - 1, 0, "Κάντε την κίνηση σας", row, col);
-  for (;;) {
+
+  for (int round = 1;; round++) {
     if (players[0]->move()) {
       showEndGameMessage("Νίκησε ο Μπάμπης Ποτερίδης!");
-      initGame();
+      break;
     } else if (players[1]->move()) {
       showEndGameMessage("Νίκησε ο Λουκάς Μαλφόυ!");
-      initGame();
+      break;
+    }
+
+    // Κάθε πέντε γύρους, αλλάζει θέση ο στόχος και ενημερώνεται ο Λουκάς κατάλληλα
+    if (round % 5 == 0) {
+      int *poss = players[2]->getCurrentPoss();
+      mvaddch(poss[0], poss[1], '.');
+
+      players[2]->generateLocations(max_row, max_col);
+      players[1]->getGoalLocations(players[2]->getCurrentPoss());
     }
   }
 }

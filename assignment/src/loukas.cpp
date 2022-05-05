@@ -49,6 +49,8 @@ bool Loukas::move() {
       return true;
     }
   }
+
+  return false;
 }
 
 void Loukas::getGoalLocations(int goal_poss[2]) {
