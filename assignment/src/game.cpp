@@ -86,8 +86,9 @@ void Game::run() {
   // Αρχικοποίηση τυχαίου αριθμού κινήσεων
   time_t n_time;
   srand((unsigned) time(&n_time));
-  int moves = rand() % 3 + 5;
-  for (int round = 1;; round++) {
+  int max_moves = rand() % 3 + 5;
+
+  for (int current_move = 1;; current_move++) {
     if (players[0]->move()) {
       showEndGameMessage("Νίκησε ο Μπάμπης Ποτερίδης!");
       break;
@@ -97,12 +98,15 @@ void Game::run() {
     }
 
     // Κάθε πέντε γύρους, αλλάζει θέση ο στόχος και ενημερώνεται ο Λουκάς κατάλληλα
-    if (round % moves == 0) {
+    if (current_move % max_moves == 0) {
       int *poss = players[2]->getCurrentPoss();
       mvaddch(poss[0], poss[1], '.');
 
       players[2]->generateLocations(max_row, max_col);
       players[1]->getGoalLocations(players[2]->getCurrentPoss());
+
+      max_moves = rand() % 3 + 5;
+      current_move = 1;
     }
   }
 }
